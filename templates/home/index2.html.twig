@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ controller_name }} !{% endblock %}
+
+{% block body %}
+<h1>Hello {{ t }}</h1>
+{% set pi=3.14 %}
+{% set name="Ahmed" %}
+{% set tableau={ nom:"Ali", age:31} %}
+<p> {{ pi }} </p>
+<p> {{ name }} </p>
+{% for k, v in tableau %}
+<p> {{ k }}: {{ v }} </p>
+<p> {{ k ~ ' - ' ~ v }} </p>
+{% else %}
+<p>Tableau vide.</p>
+{% endfor %}
+{% if tableau is empty %}
+<p>Le tableau est vide.</p>
+{% else %}
+<p>Le tableau contient des données.</p>
+<p> {{ tableau['nom'] }} </p>
+{% endif %}
+
+
+{% endblock %}
