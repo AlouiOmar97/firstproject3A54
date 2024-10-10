@@ -4,6 +4,7 @@
 
 {% block body %}
 <h1>Authors List </h1>
+<a href="{{path('app_author_new')}}">Add Author</a>
 <div>
 {% if authors is defined and authors is not empty %}
 <p>Tableau contient des données.</p>
@@ -12,12 +13,14 @@
 {% endif %}
 {% set nbBooks = 0 %}
 {% for author in authors %}
-{% set nbBooks = nbBooks + author.nb_books %}
+{% set nbBooks = nbBooks + author.nbBooks %}
 <img src="{{asset(author.picture)}}" alt="{{author.username}}" height="150px" />
 <p> <b> Username : </b> {{ author.username | upper }} </p>
 <p> <b> Email : </b> {{ author.email}} </p>
-<p> <b> Number of Books : </b> {{ author.nb_books}} </p>
+<p> <b> Number of Books : </b> {{ author.nbBooks}} </p>
 <a href="{{path('app_author_details',{id: author.id})}}">Details<a/>
+<a href="{{path('app_author_edit',{id: author.id})}}">Edit<a/>
+<a href="{{path('app_author_remove',{id: author.id})}}">Delete<a/>
 <hr>
 {% else %}
 <p>Le Tableau est vide.</p>
