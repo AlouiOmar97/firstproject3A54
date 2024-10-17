@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!{% endblock %}
+
+{% block body %}
+<h1> {{ title }} </h1>
+<div>
+{{ form(form) }}
+{#
+{{ form_start(form)}}
+{{ form_label(form.title)}}
+{{ form_widget(form.title)}}
+{{ form_error(form.title)}}
+
+{{ form_row(form.ref)}}
+
+{{ form_end(form)}}
+
+#}
+</div>
+{% endblock %}

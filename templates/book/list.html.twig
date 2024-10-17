@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!{% endblock %}
+
+{% block body %}
+<h1> Book List </h1>
+<a href="{{path('app_book_new')}}">Add Book</a>
+{% for book in books %}
+<p><b>Reference : </b> {{ book.ref }}  </p>
+<p><b>Title : </b> {{ book.title | lower }}  </p>
+<p><b>Category : </b> {{ book.category }}  </p>
+<p><b>Publication Date : </b> {{ book.publicationDate | date('d-m-Y') }}  </p>
+<p><b> Published : </b> {{ book.enabled? 'Yes' : 'No' }} </p>
+<p><b>Author : </b><a href="{{path('app_author_details',{id: book.author.id})}}"> {{ book.author.username }}<a/> </p>
+<a href="{{path('app_book_details', { ref: book.ref })}}" >Details</a>
+<a href="{{path('app_book_edit', { ref: book.ref })}}" >Update</a>
+<a href="{{path('app_book_delete', { ref: book.ref })}}" >Delete</a>
+{# <p><b>Date : </b> {{ book.publicationDate | date('d-m-Y h:i') }}  </p>#}
+{% else %}
+<p>No Books found.</p>
+{% endfor %}
+{% endblock %}

@@ -101,6 +101,15 @@ class AuthorController extends AbstractController
         ]);
     }
 
+    #[Route('/author/username/{username}', name: 'app_author_username')]
+    public function authorUsernameDetails($username, AuthorRepository $authorRepository){
+        $authorDB= $authorRepository->findAuthorByUsername($username);
+        dd($authorDB);
+        return $this->render('author/details.html.twig',[
+            'author' => $authorDB[0]
+        ]);
+    }
+
     #[Route('/author/details/{id}', name: 'app_author_details')]
     public function authorDetails($id, AuthorRepository $authorRepository){
         $authorDB= $authorRepository->find($id);

@@ -12,7 +12,10 @@
         {% endblock %}
     </head>
     <body>
-    Navbar <br>
+    Navbar 
+    <a href="{{path('app_book_list')}}">Book List</a>
+    <a href="{{path('app_author_list')}}">Author List</a>
+ <br>
         {% block body %}{% endblock %}
     <br>Footer
     </body>
