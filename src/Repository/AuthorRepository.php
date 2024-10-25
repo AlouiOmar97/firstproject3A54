@@ -22,12 +22,15 @@ class AuthorRepository extends ServiceEntityRepository
         public function findAuthorByUsername(string $username)
         {
             return $this->createQueryBuilder('a')
-                ->andWhere('a.username = :val')
-                ->setParameter('val', $username)
+                //->select("a.username")
+                ->andWhere('a.username LIKE :username')
+                ->andWhere("a.email = :mail")
+                ->setParameter('username', '%'.$username.'%')
+                ->setParameter('mail', 'abc@abc')
                 ->orderBy('a.id', 'DESC')
                 ->setMaxResults(10)
                 ->getQuery()
-                ->getSQL()
+                ->getResult()
             ;
         }
 

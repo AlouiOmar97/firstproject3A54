@@ -19,17 +19,26 @@ class BookRepository extends ServiceEntityRepository
     //    /**
     //     * @return Book[] Returns an array of Book objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('b.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+        public function findBookAuthor()
+        {
+            return $this->createQueryBuilder('b')
+                ->join('b.author', 'a')
+                ->addSelect('a')
+                ->where('a.username = ?1')
+                ->setParameter('1', 'William Shakespeare DB')
+                ->getQuery()
+                ->getDQL()
+            ;
+        }
+
+        public function findBookAuthorDQL()
+        {
+            return $this->getEntityManager()
+            ->createQuery("SELECT count(b) FROM App\Entity\Book b INNER JOIN b.author a WHERE a.username = :username")
+            ->setParameter('username', 'William Shakespeare DB')
+            ->getResult()
+            ;
+        }
 
     //    public function findOneBySomeField($value): ?Book
     //    {
