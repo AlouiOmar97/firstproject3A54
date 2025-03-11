@@ -17,7 +17,7 @@ class AddEditAuthorType extends AbstractType
         ->add('email')
         ->add('picture')
         ->add('nbBooks')
-        ->add('Envoyer', SubmitType::class)
+        ->add('Envoyer', SubmitType::class,['attr'=>["class"=>"btn btn-info"]])
         ;
     }
 

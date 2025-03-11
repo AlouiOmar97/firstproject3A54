@@ -4,5 +4,5 @@
 
 {% block body %}
 <h1> {{ title }} </h1>
-{{ form(form) }}
+{{ form(form, {'attr': {'novalidate':'novalidate'}}) }}
 {% endblock %}

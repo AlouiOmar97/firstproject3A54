@@ -5,15 +5,18 @@
 {% block body %}
 <h1>Authors List </h1>
 <a href="{{path('app_author_new')}}">Add Author</a>
-<div>
+<div class="container">
 {% if authors is defined and authors is not empty %}
 <p>Tableau contient des données.</p>
 {% else %}
 <p>Tableau vide.</p>
 {% endif %}
 {% set nbBooks = 0 %}
+<div class="row">
 {% for author in authors %}
 {% set nbBooks = nbBooks + author.nbBooks %}
+
+<!--
 <img src="{{asset(author.picture)}}" alt="{{author.username}}" height="150px" />
 <p> <b> Username : </b> {{ author.username | upper }} </p>
 <p> <b> Email : </b> {{ author.email}} </p>
@@ -22,13 +25,31 @@
 <a href="{{path('app_author_edit',{id: author.id})}}">Edit<a/>
 <a href="{{path('app_author_remove',{id: author.id})}}">Delete<a/>
 <hr>
+-->
+
+<div class="col-3 m-2">
+<div class="card" style="width: 18rem;">
+  <img src="{{asset(author.picture)}}" alt="{{author.username}}" class="card-img-top" >
+  <div class="card-body">
+    <h5 class="card-title">{{ author.username }} </h5>
+    <p class="card-text"><b> Email : </b> {{ author.email}}</p>
+    <a class="btn btn-primary" href="{{path('app_author_details',{id: author.id})}}">Details<a/>
+    <a class="btn btn-warning" href="{{path('app_author_edit',{id: author.id})}}">Edit<a/>
+    <a class="btn btn-danger" href="{{path('app_author_remove',{id: author.id})}}">Delete<a/>
+
+  </div>
+
+</div>
+
+</div>
+
 {% else %}
 <p>Le Tableau est vide.</p>
 {% endfor %}
+</div>
 
 <p><b>Number of Authors: </b>{{ authors | length }}.</p>
 <hr>
 <p><b>Number of Books: </b>{{ nbBooks }}.</p>
-
 </div>
 {% endblock %}
